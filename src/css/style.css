@@ -261,3 +261,21 @@ footer {
   font-size: var(--small-font);
   padding: 1em;
 }
+/* Responsive product images */
+.product-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: contain;
+}
+
+@media screen and (min-width: 500px) {
+  .product-card img {
+    height: 250px;
+  }
+}
+
+@media screen and (min-width: 1080px) {
+  .product-card img {
+    height: 300px;
+  }
+}
