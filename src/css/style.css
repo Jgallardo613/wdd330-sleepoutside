@@ -241,6 +241,75 @@ button {
   grid-column: 3;
 }
 
+/* newsletter styles */
+
+#openNews {
+  display: block;
+  color: var(--dark-grey);
+  background-color: var(--primary-color);
+  font-weight: bold;
+  padding: 1em 2em;
+  margin: 1em auto;
+  max-width: 500px;
+  border-radius: 15px;
+}
+
+#openNews:hover {
+  color: #fff;
+  background-color: var(--tertiary-color);
+
+}
+
+#newsletter-dialouge {
+    position:fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    border: 1px solid var(--light-grey);
+    border-radius: 12px;
+    padding: 24px;
+    width: 400px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    justify-content: center;
+    text-align: center;
+}
+
+#newsletter-dialouge::backdrop {
+  background: rgba(0, 0, 0, .5);
+}
+
+#newsletter-dialouge form {
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  gap: 12px;
+  justify-content: center;
+}
+
+#newsletter-dialouge div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 12px;
+}
+
+#newsletter-dialouge input, #newsletter-dialouge button {
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid var(--light-grey);
+  font-family: var(--font-body);
+  justify-self: center;
+}
+
+#newsletter-dialouge button:hover {
+  background-color: var(--tertiary-color);
+  color: white;
+  cursor: pointer;
+}
+
+/* End newsletter styles */
+
 @media screen and (min-width: 500px) {
   body {
     max-width: 1080px;
