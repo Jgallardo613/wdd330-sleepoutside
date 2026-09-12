@@ -1,3 +1,5 @@
+/* #region variables */
+
 :root {
   --font-body: Arial, Helvetica, sans-serif;
   --font-headline: Haettenschweiler, "Arial Narrow Bold", sans-serif;
@@ -29,6 +31,10 @@ body {
 img {
   max-width: 100%;
 }
+
+/* #endregion */
+
+/* #region header styles */
 
 header {
   display: flex;
@@ -94,7 +100,11 @@ p {
   margin-top: -1.7em;
 }
 
+/* #endregion */
+
 /* utility classes */
+
+/* #region utility classes */
 .highlight {
   color: var(--tertiary-color);
 }
@@ -116,7 +126,11 @@ button {
 
 /* End utility classes */
 
+/* #endregion */
+
 /* Cart icon styles */
+
+/* #region cart icon styles */
 .cart {
   padding-top: 1em;
   position: relative;
@@ -132,6 +146,10 @@ button {
 }
 
 /* End cart icon styles */
+
+/* #endregion */
+
+/* #region list cards */
 
 .mission {
   position: absolute;
@@ -169,6 +187,8 @@ button {
 }
 
 /* Styles for product lists */
+
+
 .product-card {
   flex: 1 1 45%;
   margin: 0.25em;
@@ -193,6 +213,7 @@ button {
 
 /* End product list card */
 
+
 .product-detail {
   padding: 1em;
   max-width: 500px;
@@ -203,7 +224,11 @@ button {
   width: 100%;
 }
 
+/* #endregion */
+
 /* Start cart list card styles */
+
+/* #region cart list card styles */
 .cart-card {
   display: grid;
   grid-template-columns: 25% auto 15%;
@@ -241,6 +266,80 @@ button {
   grid-column: 3;
 }
 
+/* #endregion */
+
+/* #region newsletter styles */
+
+#openNews {
+  display: block;
+  color: var(--dark-grey);
+  background-color: var(--primary-color);
+  font-weight: bold;
+  padding: 1em 2em;
+  margin: 1em auto;
+  max-width: 500px;
+  border-radius: 15px;
+}
+
+#openNews:hover {
+  color: #fff;
+  background-color: var(--tertiary-color);
+
+}
+
+#newsletter-dialouge {
+    position:fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    border: 1px solid var(--light-grey);
+    border-radius: 12px;
+    padding: 24px;
+    width: 400px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    justify-content: center;
+    text-align: center;
+}
+
+#newsletter-dialouge::backdrop {
+  background: rgba(0, 0, 0, .5);
+}
+
+#newsletter-dialouge form {
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  gap: 12px;
+  justify-content: center;
+}
+
+#newsletter-dialouge div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 12px;
+}
+
+#newsletter-dialouge input, #newsletter-dialouge button {
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid var(--light-grey);
+  font-family: var(--font-body);
+  justify-self: center;
+}
+
+#newsletter-dialouge button:hover {
+  background-color: var(--tertiary-color);
+  color: white;
+  cursor: pointer;
+}
+
+
+/* #endregion */
+
+/* #region media queries */
+
 @media screen and (min-width: 500px) {
   body {
     max-width: 1080px;
@@ -261,3 +360,5 @@ footer {
   font-size: var(--small-font);
   padding: 1em;
 }
+
+/* #endregion */
