@@ -27,10 +27,6 @@ export default class ProductDetails {
     document.querySelector('.product-detail img').src = this.product.Image;
     document.querySelector('.product-detail img').alt = this.product.Name;
     document.querySelector('.product-card__price').textContent = `$${this.product.FinalPrice}`;
-
-    const discountAmount = this.product.SuggestedRetailPrice - this.product.ListPrice;
-    document.querySelector('.product-card__discount').textContent = `Discount of $${discountAmount.toFixed(2)}`;
-
     document.querySelector('.product__color').textContent = this.product.Colors[0].ColorName;
     document.querySelector('.product__description').innerHTML = this.product.DescriptionHtmlSimple;
     document.getElementById('addToCart').dataset.id = this.product.Id;
