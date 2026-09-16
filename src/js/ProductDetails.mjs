@@ -24,7 +24,7 @@ export default class ProductDetails {
   renderProductDetails() {
     document.querySelector('.product-detail h3').textContent = this.product.Brand.Name;
     document.querySelector('.product-detail h2').textContent = this.product.NameWithoutBrand;
-    document.querySelector('.product-detail img').src = this.product.Image;
+    document.querySelector('.product-detail img').src = this.product.Images.PrimaryLarge;
     document.querySelector('.product-detail img').alt = this.product.Name;
     document.querySelector('.product-card__price').textContent = `$${this.product.FinalPrice}`;
     document.querySelector('.product__color').textContent = this.product.Colors[0].ColorName;
