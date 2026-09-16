@@ -1,4 +1,4 @@
-import { setLocalStorage, getLocalStorage } from './utils.mjs';
+import { getLocalStorage, renderBreadcrumb, setLocalStorage } from './utils.mjs';
 
 export default class ProductDetails {
   constructor(productId, dataSource) {
@@ -22,6 +22,7 @@ export default class ProductDetails {
   }
 
   renderProductDetails() {
+    renderBreadcrumb(document.querySelector('.breadcrumb'), this.dataSource.category);
     document.querySelector('.product-detail h3').textContent = this.product.Brand.Name;
     document.querySelector('.product-detail h2').textContent = this.product.NameWithoutBrand;
     document.querySelector('.product-detail img').src = this.product.Image;

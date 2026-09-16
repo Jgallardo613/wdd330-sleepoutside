@@ -41,6 +41,15 @@ export function renderWithTemplate(template, parentElement) {
   parentElement.innerHTML = template;
 }
 
+export function renderBreadcrumb(parentElement, category, count) {
+  if (!parentElement) {
+    throw new Error('Breadcrumb parent element was not found.');
+  }
+  const label = category.charAt(0).toUpperCase() + category.slice(1);
+  const itemCount = count === undefined ? '' : `->(${count} items)`;
+  parentElement.textContent = `${label}${itemCount}`;
+}
+
 export async function loadTemplate(path) {
   const response = await fetch(path);
   if (!response.ok) {
