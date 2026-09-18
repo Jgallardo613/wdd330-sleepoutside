@@ -16,15 +16,15 @@ export default class ProductDetails {
   }
 
   addProductToCart() {
-    const cart = getLocalStorage('so-cart') || [];
-    cart.push(this.product);
-    setLocalStorage('so-cart', cart);
+    const cartItems = getLocalStorage('so-cart') || [];
+    cartItems.push(this.product);
+    setLocalStorage('so-cart', cartItems);
   }
 
   renderProductDetails() {
     document.querySelector('.product-detail h3').textContent = this.product.Brand.Name;
     document.querySelector('.product-detail h2').textContent = this.product.NameWithoutBrand;
-    document.querySelector('.product-detail img').src = this.product.Image;
+    document.querySelector('.product-detail img').src = this.product.PrimaryLarge;
     document.querySelector('.product-detail img').alt = this.product.Name;
     document.querySelector('.product-card__price').textContent = `$${this.product.FinalPrice}`;
 
