@@ -1,4 +1,4 @@
-import { setLocalStorage, getLocalStorage } from './utils.mjs';
+import { getLocalStorage, renderBreadcrumb, setLocalStorage } from './utils.mjs';
 
 export default class ProductDetails {
   constructor(productId, dataSource) {
@@ -17,11 +17,20 @@ export default class ProductDetails {
 
   addProductToCart() {
     const cart = getLocalStorage('so-cart') || [];
-    cart.push(this.product);
+    const existingItem = cart.find((item) => item.Id === this.product.Id);
+
+    if (existingItem) {
+      existingItem.Quantity = (existingItem.Quantity || 1) + 1;
+    } else {
+      this.product.Quantity = 1;
+      cart.push(this.product);
+    }
+
     setLocalStorage('so-cart', cart);
   }
 
   renderProductDetails() {
+    renderBreadcrumb(document.querySelector('.breadcrumb'), this.dataSource.category);
     document.querySelector('.product-detail h3').textContent = this.product.Brand.Name;
     document.querySelector('.product-detail h2').textContent = this.product.NameWithoutBrand;
     document.querySelector('.product-detail img').src = this.product.Images.PrimaryLarge;

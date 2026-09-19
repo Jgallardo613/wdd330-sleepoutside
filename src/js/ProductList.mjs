@@ -1,4 +1,4 @@
-import { renderListWithTemplate } from './utils.mjs';
+import { renderBreadcrumb, renderListWithTemplate } from './utils.mjs';
 
 function productCardTemplate(product) {
   return `<li class="product-card">
@@ -25,5 +25,9 @@ export default class ProductList {
 
   renderList(list) {
     renderListWithTemplate(productCardTemplate, this.listElement, list);
+    const breadcrumb = document.querySelector('.breadcrumb');
+    if (breadcrumb) {
+      renderBreadcrumb(breadcrumb, this.category, list.length);
+    }
   }
 }
