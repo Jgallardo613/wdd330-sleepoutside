@@ -1,4 +1,5 @@
 import { getLocalStorage, renderBreadcrumb, setLocalStorage } from './utils.mjs';
+import { initComments } from './Comments.mjs';
 
 export default class ProductDetails {
   constructor(productId, dataSource) {
@@ -13,6 +14,9 @@ export default class ProductDetails {
     document
       .getElementById('addToCart')
       .addEventListener('click', this.addProductToCart.bind(this));
+
+    // Comments subsystem: show and add comments for this product
+    initComments(this.productId, document.querySelector('#comments'));
   }
 
   addProductToCart() {
