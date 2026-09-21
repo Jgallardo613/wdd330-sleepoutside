@@ -9,14 +9,15 @@ export default class ProductDetails {
   }
 
   async init() {
+    // Comments only need the product id, so show them first.
+    // This way they appear even if loading the product data fails.
+    initComments(this.productId, document.querySelector('#comments'));
+
     this.product = await this.dataSource.findProductById(this.productId);
     this.renderProductDetails();
     document
       .getElementById('addToCart')
       .addEventListener('click', this.addProductToCart.bind(this));
-
-    // Comments subsystem: show and add comments for this product
-    initComments(this.productId, document.querySelector('#comments'));
   }
 
   addProductToCart() {

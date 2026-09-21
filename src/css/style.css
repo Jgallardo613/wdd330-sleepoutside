@@ -1,3 +1,4 @@
+
 :root {
   --font-body: Arial, Helvetica, sans-serif;
   --font-headline: Haettenschweiler, "Arial Narrow Bold", sans-serif;
@@ -365,3 +366,61 @@ footer {
   font-size: var(--small-font);
   padding: 1em;
 }
+
+/* Comments styles */
+.comments {
+  max-width: 700px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.comments h2 {
+  margin-bottom: 1rem;
+}
+
+.comments__empty {
+  padding: 0.5rem 0;
+}
+
+.comments__item {
+  border-bottom: 1px solid var(--light-grey);
+  padding: 0.75rem 0;
+}
+
+.comments__author {
+  display: inline;
+  font-size: 1rem;
+  margin-right: 0.5rem;
+}
+
+.comments__date {
+  font-size: var(--small-font);
+}
+
+.comments__text {
+  padding: 0;
+  margin-top: 0.4rem;
+  overflow-wrap: anywhere;
+}
+
+.comments__form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+}
+
+.comments__form input,
+.comments__form textarea {
+  padding: 0.5rem;
+  font: inherit;
+  border: 1px solid var(--light-grey);
+}
+
+.comments__error {
+  color: #b00020;
+  min-height: 1.2em;
+  padding: 0;
+  margin: 0;
+}
+/* End comments styles */
