@@ -1,4 +1,5 @@
 import { getLocalStorage, renderBreadcrumb, setLocalStorage } from './utils.mjs';
+import { initComments } from './Comments.mjs';
 
 export default class ProductDetails {
   constructor(productId, dataSource) {
@@ -8,6 +9,10 @@ export default class ProductDetails {
   }
 
   async init() {
+    // Comments only need the product id, so show them first.
+    // This way they appear even if loading the product data fails.
+    initComments(this.productId, document.querySelector('#comments'));
+
     this.product = await this.dataSource.findProductById(this.productId);
     this.renderProductDetails();
     document
