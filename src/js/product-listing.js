@@ -17,4 +17,7 @@ const productList = new ProductList(category, dataSource, listElement);
 
 loadHeaderFooter()
   .then(() => productList.init())
-  .catch((error) => console.error(error));
+  .catch((error) => {
+    console.error(error);
+    listElement.innerHTML = `<li class="product-list__error">${error.message}</li>`;
+  });
