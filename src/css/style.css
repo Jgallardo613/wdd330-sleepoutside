@@ -1,3 +1,4 @@
+
 :root {
   --font-body: Arial, Helvetica, sans-serif;
   --font-headline: Haettenschweiler, "Arial Narrow Bold", sans-serif;
@@ -114,6 +115,11 @@ button {
   border-bottom: 2px solid var(--primary-color);
 }
 
+.breadcrumb {
+  padding: 0.75rem 1rem;
+  font-weight: bold;
+}
+
 /* End utility classes */
 
 /* Cart icon styles */
@@ -154,6 +160,36 @@ button {
 .products {
   margin-top: 2rem;
   padding: 1rem;
+}
+
+.categories {
+  margin-top: 2rem;
+  padding: 1rem;
+}
+
+.category-list {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.category-card {
+  align-items: center;
+  border: 1px solid var(--light-grey);
+  color: var(--dark-grey);
+  display: flex;
+  flex: 1 1 40%;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 250px;
+  min-height: 150px;
+  padding: 1rem;
+  text-decoration: none;
+}
+
+.category-card img {
+  height: 80px;
 }
 
 .product-list {
@@ -241,6 +277,75 @@ button {
   grid-column: 3;
 }
 
+/* newsletter styles */
+
+#openNews {
+  display: block;
+  color: var(--dark-grey);
+  background-color: var(--primary-color);
+  font-weight: bold;
+  padding: 1em 2em;
+  margin: 1em auto;
+  max-width: 500px;
+  border-radius: 15px;
+}
+
+#openNews:hover {
+  color: #fff;
+  background-color: var(--tertiary-color);
+
+}
+
+#newsletter-dialouge {
+    position:fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    border: 1px solid var(--light-grey);
+    border-radius: 12px;
+    padding: 24px;
+    width: 400px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    justify-content: center;
+    text-align: center;
+}
+
+#newsletter-dialouge::backdrop {
+  background: rgba(0, 0, 0, .5);
+}
+
+#newsletter-dialouge form {
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  gap: 12px;
+  justify-content: center;
+}
+
+#newsletter-dialouge div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 12px;
+}
+
+#newsletter-dialouge input, #newsletter-dialouge button {
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid var(--light-grey);
+  font-family: var(--font-body);
+  justify-self: center;
+}
+
+#newsletter-dialouge button:hover {
+  background-color: var(--tertiary-color);
+  color: white;
+  cursor: pointer;
+}
+
+/* End newsletter styles */
+
 @media screen and (min-width: 500px) {
   body {
     max-width: 1080px;
@@ -261,21 +366,61 @@ footer {
   font-size: var(--small-font);
   padding: 1em;
 }
-/* Responsive product images */
-.product-card img {
-  width: 100%;
-  height: 200px;
-  object-fit: contain;
+
+/* Comments styles */
+.comments {
+  max-width: 700px;
+  margin: 2rem auto;
+  padding: 0 1rem;
 }
 
-@media screen and (min-width: 500px) {
-  .product-card img {
-    height: 250px;
-  }
+.comments h2 {
+  margin-bottom: 1rem;
 }
 
-@media screen and (min-width: 1080px) {
-  .product-card img {
-    height: 300px;
-  }
+.comments__empty {
+  padding: 0.5rem 0;
 }
+
+.comments__item {
+  border-bottom: 1px solid var(--light-grey);
+  padding: 0.75rem 0;
+}
+
+.comments__author {
+  display: inline;
+  font-size: 1rem;
+  margin-right: 0.5rem;
+}
+
+.comments__date {
+  font-size: var(--small-font);
+}
+
+.comments__text {
+  padding: 0;
+  margin-top: 0.4rem;
+  overflow-wrap: anywhere;
+}
+
+.comments__form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+}
+
+.comments__form input,
+.comments__form textarea {
+  padding: 0.5rem;
+  font: inherit;
+  border: 1px solid var(--light-grey);
+}
+
+.comments__error {
+  color: #b00020;
+  min-height: 1.2em;
+  padding: 0;
+  margin: 0;
+}
+/* End comments styles */

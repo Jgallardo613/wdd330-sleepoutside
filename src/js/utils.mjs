@@ -33,3 +33,42 @@ export function renderListWithTemplate(templateFn, parentElement, list, position
   const htmlStrings = list.map(templateFn);
   parentElement.insertAdjacentHTML(position, htmlStrings.join(''));
 }
+
+export function renderWithTemplate(template, parentElement) {
+  if (!parentElement) {
+    throw new Error('Unable to render template: parent element was not found.');
+  }
+  parentElement.innerHTML = template;
+}
+
+export function renderBreadcrumb(parentElement, category, count) {
+  if (!parentElement) {
+    throw new Error('Breadcrumb parent element was not found.');
+  }
+  const label = category.charAt(0).toUpperCase() + category.slice(1);
+  const itemCount = count === undefined ? '' : `->(${count} items)`;
+  parentElement.textContent = `${label}${itemCount}`;
+}
+
+export async function loadTemplate(path) {
+  const response = await fetch(path);
+  if (!response.ok) {
+    throw new Error(`Unable to load template "${path}": ${response.status} ${response.statusText}`);
+  }
+  return response.text();
+}
+
+export async function loadHeaderFooter() {
+  const headerElement = qs('#main-header');
+  const footerElement = qs('#main-footer');
+  if (!headerElement || !footerElement) {
+    throw new Error('Header and footer placeholders are required.');
+  }
+
+  const [header, footer] = await Promise.all([
+    loadTemplate('/partials/header.html'),
+    loadTemplate('/partials/footer.html'),
+  ]);
+  renderWithTemplate(header, headerElement);
+  renderWithTemplate(footer, footerElement);
+}
