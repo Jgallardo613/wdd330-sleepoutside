@@ -9,8 +9,6 @@ export default class ProductDetails {
   }
 
   async init() {
-    // Comments only need the product id, so show them first.
-    // This way they appear even if loading the product data fails.
     initComments(this.productId, document.querySelector('#comments'));
 
     this.product = await this.dataSource.findProductById(this.productId);
@@ -38,7 +36,7 @@ export default class ProductDetails {
     renderBreadcrumb(document.querySelector('.breadcrumb'), this.dataSource.category);
     document.querySelector('.product-detail h3').textContent = this.product.Brand.Name;
     document.querySelector('.product-detail h2').textContent = this.product.NameWithoutBrand;
-    document.querySelector('.product-detail img').src = this.product.Images.PrimaryLarge;
+    document.querySelector('.product-detail img').src = this.product.Image;
     document.querySelector('.product-detail img').alt = this.product.Name;
     document.querySelector('.product-card__price').textContent = `$${this.product.FinalPrice}`;
     document.querySelector('.product__color').textContent = this.product.Colors[0].ColorName;
