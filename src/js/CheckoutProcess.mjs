@@ -54,6 +54,7 @@ export default class CheckoutProcess {
   }
 
   async checkout(form) {
+    this.calculateOrderTotal();
     const formData = new FormData(form);
     const data = Object.fromEntries(formData);
     const payload = {
