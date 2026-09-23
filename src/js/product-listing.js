@@ -1,7 +1,6 @@
 import { getParam, loadHeaderFooter } from './utils.mjs';
-import ProductData from './ProductData.mjs';
+import ExternalServices from './ExternalServices.mjs';
 import ProductList from './ProductList.mjs';
-import './newsletter.js';
 
 const category = getParam('category') || 'tents';
 const categoryName = category
@@ -11,7 +10,7 @@ const categoryName = category
 
 document.title = `Top Products: ${categoryName}`;
 
-const dataSource = new ProductData();
+const dataSource = new ExternalServices(category);
 const listElement = document.querySelector('.product-list');
 const productList = new ProductList(category, dataSource, listElement);
 
