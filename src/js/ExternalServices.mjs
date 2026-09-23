@@ -28,7 +28,7 @@ export default class ExternalServices {
       body: JSON.stringify(payload),
     };
     const response = await fetch(
-      'https://wdd330-backend.onrender-osp8.com/checkout',
+      'https://wdd330-backend.onrender.com/checkout',
       options
     );
     return convertToJson(response);
