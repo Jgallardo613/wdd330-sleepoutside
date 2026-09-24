@@ -12,14 +12,16 @@ class Alert {
         const alertSection = document.createElement('section');
         alertSection.classList.add('alert-list');
 
-        alerts.forEach((alert) => {
-            const alertMessage = document.createElement('p');
-            alertMessage.textContent = alert.message;
-            alertMessage.style.backgroundColor = alert.background;
-            alertMessage.style.color = alert.color;
+        alerts
+            .filter((alert) => alert.active)
+            .forEach((alert) => {
+                const alertMessage = document.createElement('p');
+                alertMessage.textContent = alert.message;
+                alertMessage.style.backgroundColor = alert.background;
+                alertMessage.style.color = alert.color;
 
-            alertSection.appendChild(alertMessage);
-        });
+                alertSection.appendChild(alertMessage);
+            });
 
         const main = document.querySelector('main');
         main.prepend(alertSection);

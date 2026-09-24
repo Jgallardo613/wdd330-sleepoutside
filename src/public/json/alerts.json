@@ -2,6 +2,13 @@
     {
         "message": "Alert.js Test",
         "background": "red",
-        "color": "white"
+        "color": "white",
+        "active": false
+    },
+    {
+        "message": "Special offers are coming soon! Check back for deals on your favorite outdoor gear.",
+        "background": "darkred",
+        "color": "white",
+        "active": true
     }
 ]
