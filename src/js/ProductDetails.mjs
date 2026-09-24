@@ -1,4 +1,4 @@
-import { getLocalStorage, renderBreadcrumb, setLocalStorage } from './utils.mjs';
+import { alertMessage, getLocalStorage, renderBreadcrumb, setLocalStorage } from './utils.mjs';
 import { initComments } from './Comments.mjs';
 
 export default class ProductDetails {
@@ -35,6 +35,7 @@ export default class ProductDetails {
     }
 
     setLocalStorage('so-cart', cart);
+    alertMessage('Product added to cart!');
   }
 
   renderProductDetails() {

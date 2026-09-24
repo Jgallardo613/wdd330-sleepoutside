@@ -72,3 +72,19 @@ export async function loadHeaderFooter() {
   renderWithTemplate(header, headerElement);
   renderWithTemplate(footer, footerElement);
 }
+
+export function alertMessage(message, scroll = true) {
+  const alert = document.createElement('div');
+  alert.classList.add('alert');
+  alert.innerHTML = `<p>${message}</p><span class="close-button">X</span>`;
+
+  document.querySelector('main').prepend(alert);
+
+  alert.querySelector('.close-button').addEventListener('click', () => {
+    alert.remove();
+  });
+
+  if (scroll) {
+    alert.scrollIntoView({ behavior: 'smooth' });
+  }
+}
