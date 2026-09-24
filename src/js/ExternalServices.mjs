@@ -26,10 +26,10 @@ export default class ExternalServices {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload),
     };
-    const response = await fetch(
-      'http://wdd330-backend.onrender-osp8.com/checkout',
-      options
-    );
+    const serverUrl = (
+      import.meta.env.VITE_SERVER_URL || 'https://wdd330-backend.onrender.com'
+    ).replace(/\/$/, '');
+    const response = await fetch(`${serverUrl}/checkout`, options);
     return convertToJson(response);
   }
 }
