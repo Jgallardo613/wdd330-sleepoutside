@@ -1,6 +1,7 @@
 import { getParam, loadHeaderFooter } from './utils.mjs';
-import ExternalServices from './ExternalServices.mjs';
+import ProductData from './ProductData.mjs';
 import ProductList from './ProductList.mjs';
+import './newsletter.js';
 
 const category = getParam('category') || 'tents';
 const categoryName = category
@@ -10,10 +11,13 @@ const categoryName = category
 
 document.title = `Top Products: ${categoryName}`;
 
-const dataSource = new ExternalServices(category);
+const dataSource = new ProductData();
 const listElement = document.querySelector('.product-list');
 const productList = new ProductList(category, dataSource, listElement);
 
 loadHeaderFooter()
   .then(() => productList.init())
-  .catch((error) => console.error(error));
+  .catch((error) => {
+    console.error(error);
+    listElement.innerHTML = `<li class="product-list__error">${error.message}</li>`;
+  });

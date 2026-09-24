@@ -1,27 +1,28 @@
 <!doctype html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sleep Outside | Order Success</title>
-    <link rel="stylesheet" href="/css/style.css" />
-  </head>
-  <body>
-    <header class="divider">
-      <div class="logo">
-        <img src="/images/noun_Tent_2517.svg" alt="tent image for logo" />
-        <a href="/index.html">Sleep <span class="highlight">Outside</span></a>
-      </div>
-    </header>
+    <title>Sleep Outside | Order Complete</title>
+    <link rel="stylesheet" href="../css/style.css" />
+</head>
 
+<body>
+    <header id="main-header"></header>
     <main class="divider">
-      <section>
-        <h2>Order Successful!</h2>
-        <p>Thank you for your order. Your items will be shipped soon.</p>
-        <a href="/index.html" class="button">Continue Shopping</a>
-      </section>
+        <section class="products">
+            <h1>Thank you for your order!</h1>
+            <p>Your order has been placed successfully.</p>
+            <a class="button" href="../index.html">Continue Shopping</a>
+        </section>
     </main>
+    <footer id="main-footer"></footer>
+    <script type="module">
+        import { loadHeaderFooter } from '../js/utils.mjs';
 
-    <footer>&copy;NOT a real business</footer>
-  </body>
+        loadHeaderFooter().catch((error) => console.error(error));
+    </script>
+</body>
+
 </html>

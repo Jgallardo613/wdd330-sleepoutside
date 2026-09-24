@@ -9,5 +9,9 @@ document.querySelector('#zip').addEventListener('blur', () => {
 
 document.querySelector('#checkout-form').addEventListener('submit', (e) => {
   e.preventDefault();
-  checkout.checkout(e.target);
+  if (e.target.checkValidity()) {
+    checkout.checkout(e.target);
+  } else {
+    e.target.reportValidity();
+  }
 });

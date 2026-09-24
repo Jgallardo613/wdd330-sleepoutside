@@ -13,8 +13,12 @@ export default class CheckoutProcess {
   }
 
   init() {
-    this.list = getLocalStorage(this.key);
+    this.list = (getLocalStorage(this.key) || []).filter(
+      (item) => item?.Id && item?.Name && Number.isFinite(Number(item.FinalPrice))
+    );
+    localStorage.setItem(this.key, JSON.stringify(this.list));
     this.displayItemSubtotal();
+    this.calculateOrderTotal();
   }
 
   displayItemSubtotal() {
@@ -25,18 +29,22 @@ export default class CheckoutProcess {
     }
     const htmlItems = this.list.map(
       (item) => `<li class="cart-card divider">
-        <img src="${item.Image}" alt="${item.Name}" />
+        <img src="${item.Image || item.Images?.PrimaryMedium || ''}" alt="${item.Name}" />
         <h2>${item.Name}</h2>
-        <p>$${item.FinalPrice}</p>
+        <p>qty: ${item.Quantity || 1} &times; $${item.FinalPrice}</p>
       </li>`
     );
     itemList.innerHTML = htmlItems.join('');
-    this.itemTotal = this.list.reduce((sum, item) => sum + item.FinalPrice, 0);
+    this.itemTotal = this.list.reduce(
+      (sum, item) => sum + item.FinalPrice * (item.Quantity || 1),
+      0
+    );
     document.querySelector('#subtotal').textContent = `$${this.itemTotal.toFixed(2)}`;
   }
 
   calculateOrderTotal() {
-    this.shipping = 10 + (this.list.length - 1) * 2;
+    const quantity = this.list.reduce((sum, item) => sum + (item.Quantity || 1), 0);
+    this.shipping = quantity > 0 ? 10 + (quantity - 1) * 2 : 0;
     this.tax = this.itemTotal * 0.06;
     this.orderTotal = this.itemTotal + this.shipping + this.tax;
     document.querySelector('#shipping').textContent = `$${this.shipping.toFixed(2)}`;
@@ -49,32 +57,39 @@ export default class CheckoutProcess {
       id: item.Id,
       name: item.Name,
       price: item.FinalPrice,
-      quantity: 1,
+      quantity: item.Quantity || 1,
     }));
   }
 
   async checkout(form) {
-    this.calculateOrderTotal();
-    const formData = new FormData(form);
-    const data = Object.fromEntries(formData);
-    const payload = {
-      orderDate: new Date().toISOString(),
-      fname: data.fname,
-      lname: data.lname,
-      street: data.street,
-      city: data.city,
-      state: data.state,
-      zip: data.zip,
-      cardNumber: data.cardNumber,
-      expiration: data.expiration,
-      code: data.code,
-      items: this.packageItems(),
-      orderTotal: this.orderTotal.toFixed(2),
-      shipping: this.shipping,
-      tax: this.tax.toFixed(2),
-    };
-    const services = new ExternalServices();
-    const result = await services.checkout(payload);
-    console.log(result);
+    try {
+      const formData = new FormData(form);
+      const data = Object.fromEntries(formData);
+      const payload = {
+        orderDate: new Date().toISOString(),
+        fname: data.fname,
+        lname: data.lname,
+        street: data.street,
+        city: data.city,
+        state: data.state,
+        zip: data.zip,
+        cardNumber: data.cardNumber,
+        expiration: data.expiration,
+        code: data.code,
+        items: this.packageItems(),
+        orderTotal: this.orderTotal.toFixed(2),
+        shipping: this.shipping,
+        tax: this.tax.toFixed(2),
+      };
+      const services = new ExternalServices();
+      await services.checkout(payload);
+      localStorage.removeItem(this.key);
+      window.location.href = './success.html';
+    } catch (err) {
+      const errorElement = document.querySelector('#checkout-error');
+      const message = err?.message;
+      errorElement.textContent =
+        typeof message === 'string' ? message : JSON.stringify(message || err);
+    }
   }
 }

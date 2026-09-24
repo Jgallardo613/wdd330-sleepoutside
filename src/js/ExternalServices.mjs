@@ -2,9 +2,8 @@ async function convertToJson(res) {
   const jsonResponse = await res.json();
   if (res.ok) {
     return jsonResponse;
-  } else {
-    throw { name: 'servicesError', message: jsonResponse };
   }
+  throw { name: 'servicesError', message: jsonResponse };
 }
 
 export default class ExternalServices {
@@ -12,10 +11,10 @@ export default class ExternalServices {
     this.category = category;
     this.path = `../json/${this.category}.json`;
   }
-  getData() {
-    return fetch(this.path)
-      .then(convertToJson)
-      .then((data) => data);
+  async getData() {
+    const response = await fetch(this.path);
+    const data = await convertToJson(response);
+    return Array.isArray(data) ? data : data.Result || [];
   }
   async findProductById(id) {
     const products = await this.getData();
@@ -27,10 +26,10 @@ export default class ExternalServices {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload),
     };
-    const response = await fetch(
-      'https://wdd330-backend.onrender.com/checkout',
-      options
-    );
+    const serverUrl = (
+      import.meta.env.VITE_SERVER_URL || 'https://wdd330-backend.onrender.com'
+    ).replace(/\/$/, '');
+    const response = await fetch(`${serverUrl}/checkout`, options);
     return convertToJson(response);
   }
 }
