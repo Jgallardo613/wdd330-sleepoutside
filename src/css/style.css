@@ -90,7 +90,7 @@ p {
   margin-top: -1.3em;
 }
 
-.logo--square > div {
+.logo--square>div {
   margin-top: -1.7em;
 }
 
@@ -112,6 +112,11 @@ button {
 
 .divider {
   border-bottom: 2px solid var(--primary-color);
+}
+
+.breadcrumb {
+  padding: 0.75rem 1rem;
+  font-weight: bold;
 }
 
 /* End utility classes */
@@ -154,6 +159,36 @@ button {
 .products {
   margin-top: 2rem;
   padding: 1rem;
+}
+
+.categories {
+  margin-top: 2rem;
+  padding: 1rem;
+}
+
+.category-list {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.category-card {
+  align-items: center;
+  border: 1px solid var(--light-grey);
+  color: var(--dark-grey);
+  display: flex;
+  flex: 1 1 40%;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 250px;
+  min-height: 150px;
+  padding: 1rem;
+  text-decoration: none;
+}
+
+.category-card img {
+  height: 80px;
 }
 
 .product-list {
@@ -236,9 +271,27 @@ button {
   grid-column: 3;
 }
 
+.cart-card__quantity-button {
+  margin-left: 0.25rem;
+  min-width: 1.25rem;
+  padding: 0.1rem 0.3rem;
+  font-size: 0.8rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
 .cart-card__price {
   grid-row: 2;
   grid-column: 3;
+}
+
+.cart-card__remove {
+  grid-row: 3;
+  grid-column: 3;
+  justify-self: end;
+  padding: 0.15rem 0.35rem;
+  font-size: 0.75rem;
+  cursor: pointer;
 }
 
 /* newsletter styles */
@@ -261,18 +314,18 @@ button {
 }
 
 #newsletter-dialouge {
-    position:fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 
-    border: 1px solid var(--light-grey);
-    border-radius: 12px;
-    padding: 24px;
-    width: 400px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-    justify-content: center;
-    text-align: center;
+  border: 1px solid var(--light-grey);
+  border-radius: 12px;
+  padding: 24px;
+  width: 400px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  justify-content: center;
+  text-align: center;
 }
 
 #newsletter-dialouge::backdrop {
@@ -294,7 +347,8 @@ button {
   margin-top: 12px;
 }
 
-#newsletter-dialouge input, #newsletter-dialouge button {
+#newsletter-dialouge input,
+#newsletter-dialouge button {
   padding: 10px;
   border-radius: 10px;
   border: 1px solid var(--light-grey);
@@ -330,3 +384,62 @@ footer {
   font-size: var(--small-font);
   padding: 1em;
 }
+
+/* Comments styles */
+.comments {
+  max-width: 700px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.comments h2 {
+  margin-bottom: 1rem;
+}
+
+.comments__empty {
+  padding: 0.5rem 0;
+}
+
+.comments__item {
+  border-bottom: 1px solid var(--light-grey);
+  padding: 0.75rem 0;
+}
+
+.comments__author {
+  display: inline;
+  font-size: 1rem;
+  margin-right: 0.5rem;
+}
+
+.comments__date {
+  font-size: var(--small-font);
+}
+
+.comments__text {
+  padding: 0;
+  margin-top: 0.4rem;
+  overflow-wrap: anywhere;
+}
+
+.comments__form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+}
+
+.comments__form input,
+.comments__form textarea {
+  padding: 0.5rem;
+  font: inherit;
+  border: 1px solid var(--light-grey);
+}
+
+.comments__error {
+  color: #b00020;
+  min-height: 1.2em;
+  padding: 0;
+  margin: 0;
+}
+
+/* End comments styles */
