@@ -33,9 +33,17 @@ export default class ProductDetails {
       this.product.Quantity = 1;
       cart.push(this.product);
     }
-
+    
     setLocalStorage('so-cart', cart);
     alertMessage('Product added to cart!');
+    
+    const cartIcon = document.querySelector('.cart-icon');
+    if (cartIcon) {
+      cartIcon.classList.add('animate');
+      cartIcon.addEventListener('animationend', () => {
+        cartIcon.classList.remove('animate');
+      }, { once: true });
+    }
   }
 
   renderProductDetails() {

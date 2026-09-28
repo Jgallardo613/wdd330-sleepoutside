@@ -469,4 +469,19 @@ footer {
   font-weight: bold;
   padding: 0.25rem 0.5rem;
 }
+
+.cart-icon.animate{
+  animation-name: bounce;
+  animation-duration: 1s;
+  animation-iteration-count:2;
+}
+
+@keyframes bounce{
+  0%, 100%{
+    transform:translateY(0);
+  }
+  50%{
+    transform:translateY(-10px);
+  }
+}
 /* End alert styles */
