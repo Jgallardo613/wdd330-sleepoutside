@@ -73,18 +73,30 @@ export async function loadHeaderFooter() {
   renderWithTemplate(footer, footerElement);
 }
 
+// Show a dismissible alert at the top of <main>.
+// The message is inserted as plain text (never as HTML), so text that comes
+// from the server cannot inject markup into the page.
 export function alertMessage(message, scroll = true) {
   const alert = document.createElement('div');
   alert.classList.add('alert');
-  alert.innerHTML = `<p>${message}</p><span class="close-button">X</span>`;
 
+  const text = document.createElement('p');
+  text.textContent = message;
+
+  const closeButton = document.createElement('span');
+  closeButton.classList.add('close-button');
+  closeButton.textContent = 'X';
+  closeButton.addEventListener('click', () => alert.remove());
+
+  alert.append(text, closeButton);
   document.querySelector('main').prepend(alert);
-
-  alert.querySelector('.close-button').addEventListener('click', () => {
-    alert.remove();
-  });
 
   if (scroll) {
     alert.scrollIntoView({ behavior: 'smooth' });
   }
+}
+
+// Remove every alert that is currently on the page.
+export function removeAllAlerts() {
+  document.querySelectorAll('.alert').forEach((alert) => alert.remove());
 }
