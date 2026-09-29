@@ -1,4 +1,4 @@
-import { getLocalStorage } from './utils.mjs';
+import { alertMessage, getLocalStorage, removeAllAlerts } from './utils.mjs';
 import ExternalServices from './ExternalServices.mjs';
 
 export default class CheckoutProcess {
@@ -86,10 +86,20 @@ export default class CheckoutProcess {
       localStorage.removeItem(this.key);
       window.location.href = './success.html';
     } catch (err) {
-      const errorElement = document.querySelector('#checkout-error');
-      const message = err?.message;
-      errorElement.textContent =
-        typeof message === 'string' ? message : JSON.stringify(message || err);
+      // Stay on the form so the user keeps what they typed, and show what the
+      // server (or the network) said went wrong as dismissible alerts.
+      removeAllAlerts();
+      const details = err?.message;
+      const messages = (
+        details && typeof details === 'object' ? Object.values(details) : [details]
+      ).filter(Boolean);
+      if (messages.length === 0) {
+        messages.push('Something went wrong. Please try again.');
+      }
+      messages.forEach((message) =>
+        alertMessage(typeof message === 'string' ? message : JSON.stringify(message))
+      );
+      console.error(err);
     }
   }
 }
